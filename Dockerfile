@@ -1,0 +1,1 @@
+FROM litecoinproject/litecoin-core

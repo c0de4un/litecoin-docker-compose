@@ -1,0 +1,22 @@
+services:
+  litecoin-core:
+    container_name: litecoin
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      -printtoconsole
+      -regtest=1
+      -rpcallowip=172.17.0.1/16
+      -rpcbind=0.0.0.0
+      -rpcauth='foo:7d9ba5ae63c3d4dc30583ff4fe65a67e$9e3634e81c11659e3de036d0bf88f89cd169c1039e6e09607562d54765c649cc'
+      -server=1
+    volumes:
+      - ./data:/home/litecoin/.litecoin
+    ports:
+      - "9332:9332" # Mainnet JSON-RPC/REST
+      - "9333:9333" # Mainnet P2P
+      - "19332:19332" # Testnet JSON-RPC/REST
+      - "19335:19335" # Regtest P2P
+      - "19443:19443" # Regtest JSON-RPC/REST
+      - "19444:19444" # Regtest P2P
